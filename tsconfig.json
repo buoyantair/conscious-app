@@ -15,7 +15,19 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "duplicateProperties": "error"
+        },
+        "tags": [
+          "styled",
+          "css"
+        ]
+      }
+    ]
   },
   "exclude": [
     "node_modules",
