@@ -1,3 +1,3 @@
 export default interface ThemeInterface {
-    colors: object;
+    colors: any;
 }

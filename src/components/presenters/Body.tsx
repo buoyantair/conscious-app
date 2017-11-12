@@ -9,7 +9,7 @@ interface BodyProps {
 const BodyProps: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
     return (
         <div className={props.className}>
-            {props.children};
+            {props.children}
         </div>
     );
 };

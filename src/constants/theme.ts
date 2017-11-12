@@ -18,7 +18,8 @@ const GAINSBORO: string = '#D8DBE0';
 const ASH_GREY: string = '#AEB4BC';
 const SPACE_CADET: string = '#193253';
 const AUROMETAL_SAURUS: string = '#667181';
-
+const PLATINUM: string = '#E0E0E0';
+        
 import ThemeInterface from '../interfaces/ThemeInterface';
 
 // Export constants
@@ -33,7 +34,8 @@ const theme: ThemeInterface = {
         GAINSBORO,
         ASH_GREY,
         SPACE_CADET,
-        AUROMETAL_SAURUS
+        AUROMETAL_SAURUS,
+        PLATINUM
     }
 };
 
