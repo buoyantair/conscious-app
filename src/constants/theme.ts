@@ -9,6 +9,7 @@
  * Colors
  */
 const BLEU_DE_FRANCE: string = '#2F80ED';
+const BRANDEIS_BLUE: string = '#076aed';
 const ALICE_BLUE: string = '#EAF3FF';
 const ISABELLINE: string = '#EFEFEF';
 const RAISIN_BLACK: string = '#232323';
@@ -35,7 +36,8 @@ const theme: ThemeInterface = {
         ASH_GREY,
         SPACE_CADET,
         AUROMETAL_SAURUS,
-        PLATINUM
+        PLATINUM,
+        BRANDEIS_BLUE
     }
 };
 

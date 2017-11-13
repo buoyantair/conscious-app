@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled from '../../styled-components';
 
+import PrimaryButton from '../presenters/PrimaryButton';
+import fadeInAnim from './animations/fadeInAnim';
+
 interface SettingsProps {
     className?: string;
 }
@@ -33,9 +36,14 @@ class Settings extends React.Component<SettingsProps, SettingsState> {
                 
                 <div 
                     className={'popover'} 
-                    style={{display: this.state.opened ? 'grid' : 'none'}}
+                    style={{
+                        display: this.state.opened ? 'grid' : 'none',
+                        animation: `${this.state.opened ? fadeInAnim : ''} .25s`, 
+                    }}
                 >
-                    LOG OUT HERE!
+                    <PrimaryButton>
+                        Log me out!
+                    </PrimaryButton>
                 </div>
             </div>
         );
@@ -56,6 +64,10 @@ export default styled(Settings)`
         align-items: center;
         font-size: 30px;
         position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     > .popover {
@@ -67,6 +79,7 @@ export default styled(Settings)`
         display: grid;
         align-items: center;
         justify-items: center;
+        box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.2);
     }
     
 `;
