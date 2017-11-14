@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from '../../styled-components';
+import styled from '../styled-components';
 
-import PrimaryButton from '../presenters/PrimaryButton';
+import PrimaryButton from './PrimaryButton';
 import fadeInAnim from './animations/fadeInAnim';
 
 interface SettingsProps {

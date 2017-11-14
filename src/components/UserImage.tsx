@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../styled-components';
-import ThemeInterface from '../../interfaces/ThemeInterface';
+import styled from '../styled-components';
+import ThemeInterface from '../interfaces/ThemeInterface';
 
 interface UserImageProps {
     theme: ThemeInterface;

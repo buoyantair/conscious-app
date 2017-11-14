@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from '../../styled-components';
+import styled from '../styled-components';
 
-import ThemeInterface from '../../interfaces/ThemeInterface';
+import ThemeInterface from '../interfaces/ThemeInterface';
 
 interface PrimaryButtonProps {
     theme: ThemeInterface;

@@ -4,10 +4,11 @@ import './App.css';
 
 import UserInterface from './interfaces/UserInterface';
 
-import Header from './components/presenters/Header';
-import Body from './components/presenters/Body';
-import Sidebar from './components/presenters/Sidebar';
-import UserPanel from './components/presenters/UserPanel';
+import Header from './components/Header';
+import Body from './components/Body';
+import Sidebar from './components/Sidebar';
+import UserPanel from './components/UserPanel';
+import TodoContainer from './components/TodoContainer';
 
 interface AppProps {
   
@@ -41,6 +42,7 @@ class App extends React.Component {
           <Sidebar>
             <UserPanel/>
           </Sidebar>
+          <TodoContainer/>
         </Body>
       </div>
     );

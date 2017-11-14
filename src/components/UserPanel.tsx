@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from '../../styled-components';
+import styled from '../styled-components';
 
-import ThemeInterface from '../../interfaces/ThemeInterface';
+import ThemeInterface from '../interfaces/ThemeInterface';
 
 import UserImage from './UserImage';
 import Settings from './Settings';
@@ -34,6 +34,7 @@ export default styled(UserPanel)`
       return (`
         background: ${props.theme.colors.PLATINUM};
         color: ${props.theme.colors.RAISIN_BLACK};
+        border-bottom: 2px solid ${props.theme.colors.ASH_GREY};
       `);  
     }}
 
