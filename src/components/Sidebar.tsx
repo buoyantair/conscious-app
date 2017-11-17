@@ -16,9 +16,9 @@ const Sidebar: React.StatelessComponent<SiderbarProps> = (props: SiderbarProps) 
 
 export default styled(Sidebar)`
     display: grid;
-    grid-template-rows: 2fr 8fr;
-    grid-auto-columns: 1fr;
-    grid-column: 1/2;
-    grid-row: 1/2;
+    grid-template-rows: 100px 500px;
+    grid-template-columns: 300px;
+    grid-column: 1;
+    grid-row: 1;
     background: ${(props: any) => props.theme.colors.ISABELLINE};
 `;

@@ -23,10 +23,10 @@ const UserPanel: React.StatelessComponent<UserPanelProps> = (props: UserPanelPro
 
 export default styled(UserPanel)`
     display: grid;
-    grid-column: 1/2;
-    grid-row: 1/2;
-    grid-template-columns: 2fr 3fr 2fr;
-    grid-template-rows: 1fr;
+    grid-column: 1;
+    grid-row: 1;
+    grid-template-columns: 100px 150px 50px;
+    grid-template-rows: 100px;
     align-items: center;
     justify-items: center;
 

@@ -16,7 +16,7 @@ const BodyProps: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
 
 export default styled(BodyProps)`
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 300px minmax(100px, auto);
+    grid-template-rows: minmax(100px, auto);
     min-height: 94vh;
 `;

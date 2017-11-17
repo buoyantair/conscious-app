@@ -21,19 +21,18 @@ export default styled(Header)`
     display: grid;
     margin: 0px;
     padding: 0px;
-    grid-template-columns: .01fr 1fr .01fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 10px 100px 10px;
+    grid-template-rows: 40px;
     align-items: center;
     justify-items: left;
     color: #FFF;
-    height: 6vh;
     max-width: 100%;
     background: ${(props: any) => props.theme.colors.BLEU_DE_FRANCE};
     > h1 {
         margin: 0px;
         padding: 0px;
-        grid-row: 1/2;
-        grid-column: 2/3;
+        grid-row: 1;
+        grid-column: 2;
         justify-self: left;
         font-family: 'Raleway', sans-serif;
         font-size: 20px;

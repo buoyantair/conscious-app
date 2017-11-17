@@ -22,6 +22,6 @@ const TodoContainer: React.StatelessComponent<TodoContainerProps> = (props: Todo
 
 export default styled(TodoContainer)`
     display: grid;
-    grid-template-columns: 0.05fr 0.9fr 0.05fr;
-    grid-template-rows: 0.05fr 0.2fr 0.7fr 0.05fr;
+    grid-template-rows: 20px 125px auto 10px;
+    grid-template-columns: 0.1fr 0.8fr 0.1fr;
 `;

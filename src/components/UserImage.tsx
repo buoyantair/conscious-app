@@ -16,7 +16,7 @@ const UserImage: React.StatelessComponent<UserImageProps> = (props: UserImagePro
 
 export default styled(UserImage)`
     display: grid;
-    grid-column: 1/2;
+    grid-column: 1;
     border-radius: 100%;
     ${(props: UserImageProps) => {
       return (`
