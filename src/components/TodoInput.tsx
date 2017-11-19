@@ -4,28 +4,47 @@ import styled from '../styled-components';
 import ThemeInterface from '../interfaces/ThemeInterface';
 
 interface TodoInputState {
-
+    value: string;
 }
 
 interface TodoInputProps {
     className?: string;
     theme: ThemeInterface;
+    addTask: Function;
 }
 
 class TodoInput extends React.Component<TodoInputProps, TodoInputState> {
     constructor(props: TodoInputProps) {
         super(props);
         this.state = {
-            
+            value: ''
         };
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e: any) {
+        this.setState({value: e.target.value});
     }
 
     render () {
         return (
-          <form className={this.props.className}>
+            <form 
+                className={this.props.className}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    this.props.addTask(this.state.value);
+                    this.setState({value: ''});
+                }}
+            >
                 <label htmlFor="todo">Enter your task</label>
-                <input type="text" placeholder="Send flowers to Marie"/>
-          </form>  
+                <input 
+                    type="text" 
+                    placeholder="Send flowers to Marie"
+                    value={this.state.value}
+                    onChange={this.onChange}
+                />
+            </form>  
         );
     }
 }

@@ -3,6 +3,7 @@ import styled, { keyframes } from '../styled-components';
 
 import theme from '../constants/theme';
 import ThemeInterface from '../interfaces/ThemeInterface';
+import TodoInterface from '../interfaces/TodoInterface';
 
 const openOut =  keyframes`
     to {
@@ -13,17 +14,20 @@ const openOut =  keyframes`
 interface TickMarkProps {
     className?: string;
     theme: ThemeInterface;
+    todo: TodoInterface;
+    index: number;
+    handleTick: Function;
 }
 
 interface TickMarkState {
-    ticked: Boolean;
+    
 }
 
 class TickMark extends React.Component<TickMarkProps, TickMarkState> {
     constructor(props: TickMarkProps) {
         super(props);
         this.state = {
-            ticked: true,
+            
         };
     }
 
@@ -33,9 +37,9 @@ class TickMark extends React.Component<TickMarkProps, TickMarkState> {
                 <div 
                     className="dot"
                     style={{
-                        background: this.state.ticked ? theme.colors.BLEU_DE_FRANCE : theme.colors.ASH_GREY 
+                        background: this.props.todo.completed ? theme.colors.BLEU_DE_FRANCE : theme.colors.ASH_GREY 
                     }}
-                    onClick={() => this.setState({ticked: !this.state.ticked})}
+                    onClick={(e) => this.props.handleTick(e, this.props.index)}
                 />
             </div>
         );

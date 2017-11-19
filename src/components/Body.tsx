@@ -6,7 +6,7 @@ interface BodyProps {
     children?: any;
 }
 
-const BodyProps: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
+const Body: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
     return (
         <div className={props.className}>
             {props.children}
@@ -14,7 +14,7 @@ const BodyProps: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
     );
 };
 
-export default styled(BodyProps)`
+export default styled(Body)`
     display: grid;
     grid-template-columns: 300px minmax(100px, auto);
     grid-template-rows: minmax(100px, auto);

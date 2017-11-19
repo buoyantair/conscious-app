@@ -2,14 +2,18 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ThemeInterface from '../interfaces/ThemeInterface';
-
+import TodoInterface from '../interfaces/TodoInterface';
 import fadeInAnim from './animations/fadeInAnim';
 
 import TickMark from './TickMark';
 
 interface TodoProps {
     className?: string;
+    index: number;
     theme: ThemeInterface;
+    todo: TodoInterface;
+    handleTick: Function;
+    deleteTask: Function;
 }
 
 interface TodoState {
@@ -27,10 +31,18 @@ class Todo extends React.Component<TodoProps, TodoState> {
     render () {
         return (
             <div className={this.props.className}>
-                <TickMark/>
+                <TickMark 
+                    todo={this.props.todo}
+                    index={this.props.index}
+                    handleTick={this.props.handleTick}
+                />
                 <div className="text">
-                    Todo HERE!
+                    {this.props.todo.text}
                 </div>
+                <i
+                    className="ion-trash-b delete"
+                    onClick={(e) => this.props.deleteTask(this.props.todo)}
+                />
             </div>
         );
     }
@@ -51,15 +63,23 @@ export default styled(Todo)`
 
     display: grid;
     align-items: center;
-    grid-template-columns: 5px 40px 5px auto 10px;
+    grid-template-columns: 5px 40px 5px auto 40px 10px;
 
     &:hover {
-        cursor: pointer;
         transform: scale(0.995);
     }
 
     > .text {
         grid-column: 4;
         font-family: 'Roboto', sans-serif;
+    }
+
+    > .delete {
+        grid-column: 5;
+
+        &:hover {
+            color: ${(props: TodoProps) => props.theme.colors.CO_RED };
+            cursor: pointer;
+        }
     }
 `;

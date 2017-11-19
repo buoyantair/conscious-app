@@ -2,11 +2,15 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ThemeInterface from '../interfaces/ThemeInterface';
+import TodoInterface from '../interfaces/TodoInterface';
 import Todo from './Todo';
 
 interface TodoListProps {
     className?: string;
     theme: ThemeInterface;
+    todos: TodoInterface[];
+    handleTick: Function;
+    deleteTask: Function;
 }
 
 interface TodoListState {
@@ -24,9 +28,17 @@ class TodoList extends React.Component<TodoListProps, TodoListState> {
     render () {
         return (
             <div className={this.props.className}>
-                <Todo/>
-                <Todo/>
-                <Todo/>
+                {
+                    this.props.todos.map((todo, i) => (
+                        <Todo 
+                            key={i}
+                            index={i}
+                            todo={todo}
+                            handleTick={this.props.handleTick}
+                            deleteTask={this.props.deleteTask}
+                        />
+                    ))
+                }
             </div>
         );
     }

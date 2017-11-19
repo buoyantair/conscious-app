@@ -2,11 +2,13 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ThemeInterface from '../interfaces/ThemeInterface';
+import UserInterface from '../interfaces/UserInterface';
 
 import UserImage from './UserImage';
 import Settings from './Settings';
 
 interface UserPanelProps {
+    user: UserInterface;
     theme: ThemeInterface;
     className?: string;
 }
@@ -15,7 +17,7 @@ const UserPanel: React.StatelessComponent<UserPanelProps> = (props: UserPanelPro
     return (
         <div className={props.className}>
             <UserImage size={70}/>
-            <h3>Raxx Alderon</h3>
+            <h3>{props.user.name}</h3>
             <Settings/>
         </div>
     );

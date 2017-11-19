@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ThemeInterface from '../interfaces/ThemeInterface';
+import TodoInterface from '../interfaces/TodoInterface';
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
@@ -9,13 +10,23 @@ import TodoList from './TodoList';
 interface TodoContainerProps {
     className?: string;
     theme?: ThemeInterface;
+    todos: TodoInterface[];
+    handleTick: Function;
+    addTask: Function;
+    deleteTask: Function;
 }
 
 const TodoContainer: React.StatelessComponent<TodoContainerProps> = (props: TodoContainerProps) => {
     return (
         <div className={props.className}>
-            <TodoInput/>
-            <TodoList/>
+            <TodoInput
+                addTask={props.addTask}
+            />
+            <TodoList 
+                todos={props.todos}
+                handleTick={props.handleTick}
+                deleteTask={props.deleteTask}
+            />
         </div>
     );
 };

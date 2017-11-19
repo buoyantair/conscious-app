@@ -20,6 +20,7 @@ const ASH_GREY: string = '#AEB4BC';
 const SPACE_CADET: string = '#193253';
 const AUROMETAL_SAURUS: string = '#667181';
 const PLATINUM: string = '#E0E0E0';
+const CO_RED: string = '#e63b2e';
         
 import ThemeInterface from '../interfaces/ThemeInterface';
 
@@ -37,7 +38,8 @@ const theme: ThemeInterface = {
         SPACE_CADET,
         AUROMETAL_SAURUS,
         PLATINUM,
-        BRANDEIS_BLUE
+        BRANDEIS_BLUE,
+        CO_RED
     }
 };
 
