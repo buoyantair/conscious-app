@@ -1,15 +1,15 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
+import ITheme from '../interfaces/ITheme';
 
-interface PrimaryButtonProps {
-    theme: ThemeInterface;
+interface IPrimaryButtonProps {
+    theme: ITheme;
     className?: string;
     children?: any;
 }
 
-const PrimaryButton: React.StatelessComponent<PrimaryButtonProps> = (props: PrimaryButtonProps) => {
+const PrimaryButton: React.StatelessComponent<IPrimaryButtonProps> = (props: IPrimaryButtonProps) => {
     return (
         <div className={props.className}>
             {props.children}
@@ -20,7 +20,7 @@ const PrimaryButton: React.StatelessComponent<PrimaryButtonProps> = (props: Prim
 export default styled(PrimaryButton)`
     min-width: 100px;
     min-height: 40px;
-    ${(props: PrimaryButtonProps) => `
+    ${(props: IPrimaryButtonProps) => `
         background: ${props.theme.colors.BLEU_DE_FRANCE};
     `}
     color: #FFF;
@@ -32,7 +32,7 @@ export default styled(PrimaryButton)`
     transition: background .3s;
     &:hover {
         cursor: pointer;
-        ${(props: PrimaryButtonProps) => `
+        ${(props: IPrimaryButtonProps) => `
             background: ${props.theme.colors.BRANDEIS_BLUE};
         `}
     }

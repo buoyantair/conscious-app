@@ -1,19 +1,19 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
+import Popover from './Popover';
 import PrimaryButton from './PrimaryButton';
-import fadeInAnim from './animations/fadeInAnim';
 
-interface SettingsProps {
+interface ISettingsProps {
     className?: string;
 }
 
-interface SettingsState {
+interface ISettingsState {
     opened: Boolean;
 }
 
-class Settings extends React.Component<SettingsProps, SettingsState> {
-    constructor(props: SettingsProps) {
+class Settings extends React.Component<ISettingsProps, ISettingsState> {
+    constructor(props: ISettingsProps) {
         super(props);
         this.state = {
             opened: false,
@@ -22,6 +22,11 @@ class Settings extends React.Component<SettingsProps, SettingsState> {
         this.toggleSettings.bind(this);
     }
 
+    /**
+     * Toggles the opened property of this state 
+     * 
+     * @memberof Settings
+     */
     toggleSettings() {
         this.setState({opened: !this.state.opened});
     }
@@ -34,17 +39,13 @@ class Settings extends React.Component<SettingsProps, SettingsState> {
                     onClick={() => this.toggleSettings()}
                 />
                 
-                <div 
-                    className={'popover'} 
-                    style={{
-                        display: this.state.opened ? 'grid' : 'none',
-                        animation: `${this.state.opened ? fadeInAnim : ''} .25s`, 
-                    }}
+                <Popover
+                    opened={this.state.opened ? true : false}
                 >
                     <PrimaryButton>
                         Log me out!
                     </PrimaryButton>
-                </div>
+                </Popover>
             </div>
         );
     }
@@ -70,7 +71,7 @@ export default styled(Settings)`
         }
     }
 
-    > .popover {
+    /* > .popover {
         position: absolute;
         width: 200px;
         height: 80px;
@@ -80,6 +81,6 @@ export default styled(Settings)`
         align-items: center;
         justify-items: center;
         box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.2);
-    }
+    } */
     
 `;

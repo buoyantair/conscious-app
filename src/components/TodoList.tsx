@@ -1,24 +1,23 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
-import TodoInterface from '../interfaces/TodoInterface';
+import ITheme from '../interfaces/ITheme';
+import ITodo from '../interfaces/ITodo';
 import Todo from './Todo';
 
-interface TodoListProps {
+interface ITodoListProps {
     className?: string;
-    theme: ThemeInterface;
-    todos: TodoInterface[];
+    theme: ITheme;
+    todos: ITodo[];
     handleTick: Function;
-    deleteTask: Function;
 }
 
-interface TodoListState {
+interface ITodoListState {
     
 }
 
-class TodoList extends React.Component<TodoListProps, TodoListState> {
-    constructor(props: TodoListProps) {
+class TodoList extends React.Component<ITodoListProps, ITodoListState> {
+    constructor(props: ITodoListProps) {
         super(props);
         this.state = {
 
@@ -35,7 +34,6 @@ class TodoList extends React.Component<TodoListProps, TodoListState> {
                             index={i}
                             todo={todo}
                             handleTick={this.props.handleTick}
-                            deleteTask={this.props.deleteTask}
                         />
                     ))
                 }

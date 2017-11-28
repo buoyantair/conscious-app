@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import MainApp from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
@@ -9,7 +9,7 @@ import theme from './constants/theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <MainApp />
   </ThemeProvider>,
   document.getElementById('root') as HTMLElement
 );

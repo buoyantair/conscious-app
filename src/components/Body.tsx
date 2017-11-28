@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-interface BodyProps {
+interface IBodyProps {
     className?: string;
     children?: any;
 }
 
-const Body: React.StatelessComponent<BodyProps> = (props: BodyProps) => {
+const Body: React.StatelessComponent<IBodyProps> = (props: IBodyProps) => {
     return (
         <div className={props.className}>
             {props.children}

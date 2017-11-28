@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled from '../styled-components';
-import ThemeInterface from '../interfaces/ThemeInterface';
+import ITheme from '../interfaces/ITheme';
 
-interface UserImageProps {
-    theme: ThemeInterface;
+interface IUserImageProps {
+    theme: ITheme;
     className?: string;
     size?: number;
 }
 
-const UserImage: React.StatelessComponent<UserImageProps> = (props: UserImageProps) => {
+const UserImage: React.StatelessComponent<IUserImageProps> = (props: IUserImageProps) => {
     return (
         <div className={props.className}/>
     );
@@ -18,7 +18,7 @@ export default styled(UserImage)`
     display: grid;
     grid-column: 1;
     border-radius: 100%;
-    ${(props: UserImageProps) => {
+    ${(props: IUserImageProps) => {
       return (`
         height: ${props.size}px;
         width: ${props.size}px;

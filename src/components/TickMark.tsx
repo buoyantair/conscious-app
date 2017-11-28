@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled, { keyframes } from '../styled-components';
 
 import theme from '../constants/theme';
-import ThemeInterface from '../interfaces/ThemeInterface';
-import TodoInterface from '../interfaces/TodoInterface';
+import ITheme from '../interfaces/ITheme';
+import ITodo from '../interfaces/ITodo';
 
 const openOut =  keyframes`
     to {
@@ -11,20 +11,20 @@ const openOut =  keyframes`
     }
 `;
 
-interface TickMarkProps {
+interface ITickMarkProps {
     className?: string;
-    theme: ThemeInterface;
-    todo: TodoInterface;
+    theme: ITheme;
+    todo: ITodo;
     index: number;
     handleTick: Function;
 }
 
-interface TickMarkState {
+interface ITickMarkState {
     
 }
 
-class TickMark extends React.Component<TickMarkProps, TickMarkState> {
-    constructor(props: TickMarkProps) {
+class TickMark extends React.Component<ITickMarkProps, ITickMarkState> {
+    constructor(props: ITickMarkProps) {
         super(props);
         this.state = {
             
@@ -51,7 +51,7 @@ export default styled(TickMark)`
     height: 30px;
     width: 30px;
     border-radius: 100%;
-    border: 2px solid ${(props: TickMarkProps) => props.theme.colors.BLEU_DE_FRANCE};
+    border: 2px solid ${(props: ITickMarkProps) => props.theme.colors.BLEU_DE_FRANCE};
 
     display: grid;
     justify-items: center;

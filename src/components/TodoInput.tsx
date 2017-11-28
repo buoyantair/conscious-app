@@ -1,20 +1,20 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
+import ITheme from '../interfaces/ITheme';
 
-interface TodoInputState {
+interface ITodoInputState {
     value: string;
 }
 
-interface TodoInputProps {
+interface ITodoInputProps {
     className?: string;
-    theme: ThemeInterface;
+    theme: ITheme;
     addTask: Function;
 }
 
-class TodoInput extends React.Component<TodoInputProps, TodoInputState> {
-    constructor(props: TodoInputProps) {
+class TodoInput extends React.Component<ITodoInputProps, ITodoInputState> {
+    constructor(props: ITodoInputProps) {
         super(props);
         this.state = {
             value: ''
@@ -57,11 +57,11 @@ export default styled(TodoInput)`
     font-family: 'Roboto', sans-serif;
     grid-template-columns: 10px auto 10px;
     grid-template-rows: 30px 60px;
-    ${(props: TodoInputProps) => `border-bottom: 2px solid ${props.theme.colors.ASH_GREY};`}
+    ${(props: ITodoInputProps) => `border-bottom: 2px solid ${props.theme.colors.ASH_GREY};`}
     > label {
         grid-column: 2;
         font-size: 20px;
-        ${(props: TodoInputProps) => `color: ${props.theme.colors.SPACE_CADET}`}
+        ${(props: ITodoInputProps) => `color: ${props.theme.colors.SPACE_CADET}`}
     }
     > input {
         grid-column: 2;
@@ -69,7 +69,7 @@ export default styled(TodoInput)`
         border-radius: 5px;
         padding: 10px;
         font-size: 20px;
-        ${(props: TodoInputProps) => `
+        ${(props: ITodoInputProps) => `
             border: 2px solid ${props.theme.colors.ASH_GREY};
             color: ${props.theme.colors.AUROMETAL_SAURUS};
         `}

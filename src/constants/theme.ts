@@ -22,10 +22,10 @@ const AUROMETAL_SAURUS: string = '#667181';
 const PLATINUM: string = '#E0E0E0';
 const CO_RED: string = '#e63b2e';
         
-import ThemeInterface from '../interfaces/ThemeInterface';
+import ITheme from '../interfaces/ITheme';
 
 // Export constants
-const theme: ThemeInterface = {
+const theme: ITheme = {
     colors: {
         BLEU_DE_FRANCE,
         ALICE_BLUE,

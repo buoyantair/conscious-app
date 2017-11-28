@@ -1,36 +1,61 @@
 import * as React from 'react';
-import styled from '../styled-components';
+import styled, { keyframes } from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
-import TodoInterface from '../interfaces/TodoInterface';
+import ITheme from '../interfaces/ITheme';
+import ITodo from '../interfaces/ITodo';
 import fadeInAnim from './animations/fadeInAnim';
 
 import TickMark from './TickMark';
 
-interface TodoProps {
+interface ITodoProps {
     className?: string;
     index: number;
-    theme: ThemeInterface;
-    todo: TodoInterface;
+    theme: ITheme;
+    todo: ITodo;
     handleTick: Function;
-    deleteTask: Function;
 }
 
-interface TodoState {
-
+interface ITodoState {
+    hovered: Boolean;
 }
 
-class Todo extends React.Component<TodoProps, TodoState> {
-    constructor(props: TodoProps) {
+const pushInAnim = keyframes`
+    from {
+        left: 100px;
+    }
+    to {
+        left: 0px;
+    }
+`;
+
+interface ItoggleHover {
+    (): void;
+}
+
+class Todo extends React.Component<ITodoProps, ITodoState> {
+    toggleHover: ItoggleHover = function (this: Todo) {
+        this.setState({hovered: !this.state.hovered});
+    };
+    
+    constructor(props: ITodoProps) {
         super(props);
         this.state = {
-
+            hovered: false,
         };
+
+        this.toggleHover = this.toggleHover.bind(this);
     }
 
     render () {
         return (
-            <div className={this.props.className}>
+            <div 
+                className={this.props.className}
+                onMouseEnter={this.toggleHover}
+                onMouseLeave={this.toggleHover}
+                // style={{
+                //     cursor: this.state.hovered ? 'pointer' : 'initial'
+                // }}
+            >
                 <TickMark 
                     todo={this.props.todo}
                     index={this.props.index}
@@ -39,10 +64,25 @@ class Todo extends React.Component<TodoProps, TodoState> {
                 <div className="text">
                     {this.props.todo.text}
                 </div>
-                <i
-                    className="ion-trash-b delete"
-                    onClick={(e) => this.props.deleteTask(this.props.todo)}
-                />
+                <div className="timer">
+                    <div className="control">
+                        control
+                    </div>
+                    <div className="label">
+                        label
+                    </div>
+                </div>
+                <div
+                    className="todo-settings"
+                    // onClick={(e) => this.props.deleteTask(this.props.todo)}
+                >
+                    <i
+                        className="ion-trash-b"
+                        style={{
+                            animation: this.state.hovered ? `${pushInAnim} 0.15s forwards` : ''
+                        }}
+                    />
+                </div>
             </div>
         );
     }
@@ -54,16 +94,22 @@ export default styled(Todo)`
     border-radius: 5px;
     font-size: 20px;
     padding: 10px;
-    animation: ${fadeInAnim} 0.2s forwards;
+    animation: ${fadeInAnim} ${(props: ITodoProps) => {
+        let time = 0.2 * props.index * 4;
+        return time > 2 ? 2 : time;
+    }}s forwards;
     transition: transform 0.1s;
-    ${(props: TodoProps) => `
+    ${(props: ITodoProps) => `
         border: 2px solid ${props.theme.colors.ASH_GREY};
         color: ${props.theme.colors.AUROMETAL_SAURUS};
     `}
+    
+
+    overflow: hidden;
 
     display: grid;
     align-items: center;
-    grid-template-columns: 5px 40px 5px auto 40px 10px;
+    grid-template-columns: 5px 40px 5px auto 5px 240px 40px 10px;
 
     &:hover {
         transform: scale(0.995);
@@ -74,12 +120,39 @@ export default styled(Todo)`
         font-family: 'Roboto', sans-serif;
     }
 
-    > .delete {
-        grid-column: 5;
+    > .timer {
+        grid-column: 6;
+        display: grid;
+        grid-template-columns: 120px 120px;
+        align-items: center;
+        width: 240px;
+        height: 40px;
+        
+        > .control {
+            grid-column: 1;
+        }
 
+        > .label {
+            grid-column: 2;
+        }
+    }
+
+    > .todo-settings {
+        grid-column: 7;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        height: 40px;
+        width: 40px;
+        
         &:hover {
-            color: ${(props: TodoProps) => props.theme.colors.CO_RED };
+            color: ${(props: ITodoProps) => props.theme.colors.CO_RED };
             cursor: pointer;
+        }
+
+        > i {
+            position: relative;
+            left: 100px;
         }
     }
 `;

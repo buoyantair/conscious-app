@@ -1,19 +1,19 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
-import UserInterface from '../interfaces/UserInterface';
+import ITheme from '../interfaces/ITheme';
+import IUser from '../interfaces/IUser';
 
 import UserImage from './UserImage';
 import Settings from './Settings';
 
-interface UserPanelProps {
-    user: UserInterface;
-    theme: ThemeInterface;
+interface IUserPanelProps {
+    user: IUser;
+    theme: ITheme;
     className?: string;
 }
 
-const UserPanel: React.StatelessComponent<UserPanelProps> = (props: UserPanelProps) => {
+const UserPanel: React.StatelessComponent<IUserPanelProps> = (props: IUserPanelProps) => {
     return (
         <div className={props.className}>
             <UserImage size={70}/>
@@ -32,7 +32,7 @@ export default styled(UserPanel)`
     align-items: center;
     justify-items: center;
 
-    ${(props: UserPanelProps) => {
+    ${(props: IUserPanelProps) => {
       return (`
         background: ${props.theme.colors.PLATINUM};
         color: ${props.theme.colors.RAISIN_BLACK};

@@ -1,15 +1,15 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-import ThemeInterface from '../interfaces/ThemeInterface';
+import ITheme from '../interfaces/ITheme';
 
-interface HeaderProps {
-    theme?: ThemeInterface;
+interface IHeaderProps {
+    theme?: ITheme;
     className?: string;
     children?: any;
 }
 
-const Header: React.StatelessComponent<HeaderProps> = (props: HeaderProps) => {
+const Header: React.StatelessComponent<IHeaderProps> = (props: IHeaderProps) => {
     return (
         <div className={props.className}>
             {props.children}

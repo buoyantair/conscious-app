@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from '../styled-components';
 
-interface SiderbarProps {
+interface ISiderbarProps {
     className?: string;
     children?: any;
 }
 
-const Sidebar: React.StatelessComponent<SiderbarProps> = (props: SiderbarProps) => {
+const Sidebar: React.StatelessComponent<ISiderbarProps> = (props: ISiderbarProps) => {
     return (
         <div className={props.className}>
             {props.children}
