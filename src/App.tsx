@@ -67,16 +67,16 @@ class App extends React.Component<IAppProps, IAppState> {
     let { todos } = this.state;
     todos = todos.map(t => t._id === todo._id ? todo : t);
     
-    this.setState({...this.state, todos});
+    this.setState({todos});
   }
 
   toggleEditTask: ItoggleEditTask = (todo: ITodo) => {
-    const newState: IAppState = this.state;
-    newState.currentTask.opened = !newState.currentTask.opened;
+    const {currentTask} = this.state;
     
-    newState.currentTask.todo = todo;
-
-    this.setState(newState);
+    this.setState({ currentTask : {
+      todo,
+      opened: !currentTask.opened
+    }});
   }
 
   constructor(props: IAppProps) {
