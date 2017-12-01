@@ -33,14 +33,14 @@ interface IAppState {
 }
 
 class App extends React.Component<IAppProps, IAppState> {  
-  handleTick: IhandleTick = function (this: App, e: any, k: number) {
+  handleTick: IhandleTick = (e: any, k: number) => {
     const newState: IAppState = this.state;
     newState.todos[k].completed = !newState.todos[k].completed;
 
     this.setState(newState);
-  };
+  }
 
-  addTask: IaddTask = function(this: App, text: string) {
+  addTask: IaddTask = (text: string) => {
     let newState: IAppState = this.state;
     newState.todos.push({ 
       _id: newState.todos.length,
@@ -54,30 +54,30 @@ class App extends React.Component<IAppProps, IAppState> {
     });
 
     this.setState(newState);
-  };
+  }
 
-  deleteTask: IdeleteTask = function(this: App, todo: ITodo) {
+  deleteTask: IdeleteTask = (todo: ITodo) => {
     const newState: IAppState = this.state;
     newState.todos = newState.todos.filter(t => t !== todo);
 
     this.setState(newState);
-  };
+  }
 
-  editTask: IeditTask = function(this: App, todo: ITodo) {
-    let { todos} = this.state;
+  editTask: IeditTask = (todo: ITodo) => {
+    let { todos } = this.state;
     todos = todos.map(t => t._id === todo._id ? todo : t);
     
     this.setState({...this.state, todos});
-  };
+  }
 
-  toggleEditTask: ItoggleEditTask = function (this: App, todo: ITodo) {
+  toggleEditTask: ItoggleEditTask = (todo: ITodo) => {
     const newState: IAppState = this.state;
     newState.currentTask.opened = !newState.currentTask.opened;
     
     newState.currentTask.todo = todo;
 
     this.setState(newState);
-  };
+  }
 
   constructor(props: IAppProps) {
     super(props);
@@ -136,12 +136,6 @@ class App extends React.Component<IAppProps, IAppState> {
         }
       }
     };
-
-    this.handleTick = this.handleTick.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-    this.editTask = this.editTask.bind(this);
-    this.toggleEditTask = this.toggleEditTask.bind(this);
   }  
 
   render() {

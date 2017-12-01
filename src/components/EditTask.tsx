@@ -44,30 +44,28 @@ interface IpageEvent {
 }
 
 class EditTask extends React.Component<IeditTaskProps, IeditTaskState> {
-    onChange: IonChange = function(this: EditTask, e: any) {
-        this.setState({ todo: { ...this.state.todo, text: e.target.value } });
-    };
 
-    Save: IpageEvent = function(this: EditTask, e: any) {
+    onChange: IonChange = (e: any) => {
+        this.setState({ todo: { ...this.state.todo, text: e.target.value } });
+    }
+
+    Save: IpageEvent = (e: any) => {
         e.preventDefault();
         this.props.editTask(this.state.todo);
         this.props.toggleEditTask();
-    };
+    }
 
-    Delete: IpageEvent = function(this: EditTask, e: any) {
+    Delete: IpageEvent = (e: any) => {
         e.preventDefault();
         this.props.deleteTask(this.state.todo);
         this.props.toggleEditTask();
-    };
+    }
 
     constructor(props: IeditTaskProps) {
         super(props);
         this.state = {
             todo: this.props.todo
         };
-        this.onChange = this.onChange.bind(this);
-        this.Save = this.Save.bind(this);
-        this.Delete = this.Delete.bind(this);
     }
 
     render () {
@@ -104,6 +102,7 @@ class EditTask extends React.Component<IeditTaskProps, IeditTaskState> {
                         <Button 
                             primary={true}
                             onClick={this.Save}
+                            type="submit"
                         >
                             Save
                         </Button>
