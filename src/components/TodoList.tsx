@@ -3,13 +3,17 @@ import styled from '../styled-components';
 
 import ITheme from '../interfaces/ITheme';
 import ITodo from '../interfaces/ITodo';
+import IhandleTask from '../interfaces/IhandleTick';
+import ItoggleEditTask from '../interfaces/ItoggleEditTask';
+
 import Todo from './Todo';
 
 interface ITodoListProps {
     className?: string;
     theme: ITheme;
     todos: ITodo[];
-    handleTick: Function;
+    handleTick: IhandleTask;
+    toggleEditTask: ItoggleEditTask;
 }
 
 interface ITodoListState {
@@ -34,6 +38,7 @@ class TodoList extends React.Component<ITodoListProps, ITodoListState> {
                             index={i}
                             todo={todo}
                             handleTick={this.props.handleTick}
+                            toggleEditTask={this.props.toggleEditTask}
                         />
                     ))
                 }

@@ -3,6 +3,9 @@ import styled from '../styled-components';
 
 import ITheme from '../interfaces/ITheme';
 import ITodo from '../interfaces/ITodo';
+import ItoggleEditTask from '../interfaces/ItoggleEditTask';
+import IaddTask from '../interfaces/IaddTask';
+import IhandleTick from '../interfaces/IhandleTick';
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
@@ -11,8 +14,9 @@ interface ITodoContainerProps {
     className?: string;
     theme?: ITheme;
     todos: ITodo[];
-    handleTick: Function;
-    addTask: Function;
+    handleTick: IhandleTick;
+    addTask: IaddTask;
+    toggleEditTask: ItoggleEditTask;
 }
 
 const TodoContainer: React.StatelessComponent<ITodoContainerProps> = (props: ITodoContainerProps) => {
@@ -24,6 +28,7 @@ const TodoContainer: React.StatelessComponent<ITodoContainerProps> = (props: ITo
             <TodoList 
                 todos={props.todos}
                 handleTick={props.handleTick}
+                toggleEditTask={props.toggleEditTask}
             />
         </div>
     );

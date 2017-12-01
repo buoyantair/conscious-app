@@ -3,28 +3,39 @@ import styled, { keyframes } from '../styled-components';
 
 import ITheme from '../interfaces/ITheme';
 import ITodo from '../interfaces/ITodo';
-import fadeInAnim from './animations/fadeInAnim';
+import IhandleTick from '../interfaces/IhandleTick';
+import ItoggleEditTask from '../interfaces/ItoggleEditTask';
 
 import TickMark from './TickMark';
 
-interface ITodoProps {
+import fadeInAnim from './animations/fadeInAnim';
+
+import padZero from '../utils/padZero';
+
+interface ItodoProps {
     className?: string;
     index: number;
     theme: ITheme;
     todo: ITodo;
-    handleTick: Function;
+    handleTick: IhandleTick;
+    toggleEditTask: ItoggleEditTask; 
 }
 
-interface ITodoState {
+interface ItodoState {
     hovered: Boolean;
 }
 
 const pushInAnim = keyframes`
-    from {
+    0% {
         left: 100px;
+        opacity: 0;
     }
-    to {
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
         left: 0px;
+        opacity: 1;
     }
 `;
 
@@ -32,12 +43,12 @@ interface ItoggleHover {
     (): void;
 }
 
-class Todo extends React.Component<ITodoProps, ITodoState> {
+class Todo extends React.Component<ItodoProps, ItodoState> {
     toggleHover: ItoggleHover = function (this: Todo) {
         this.setState({hovered: !this.state.hovered});
     };
     
-    constructor(props: ITodoProps) {
+    constructor(props: ItodoProps) {
         super(props);
         this.state = {
             hovered: false,
@@ -65,21 +76,23 @@ class Todo extends React.Component<ITodoProps, ITodoState> {
                     {this.props.todo.text}
                 </div>
                 <div className="timer">
-                    <div className="control">
-                        control
-                    </div>
-                    <div className="label">
-                        label
-                    </div>
+                    <i className="control ion-play"/>
+                    <i className="label">
+                        {
+                            `
+                                ${padZero(this.props.todo.timeElapsed.hours)}:${padZero(this.props.todo.timeElapsed.mins)}:${padZero(this.props.todo.timeElapsed.secs)}
+                            `
+                        }
+                    </i>
                 </div>
                 <div
                     className="todo-settings"
-                    // onClick={(e) => this.props.deleteTask(this.props.todo)}
+                    onClick={(e) => this.props.toggleEditTask(this.props.todo)}
                 >
                     <i
-                        className="ion-trash-b"
+                        className="ion-ios-gear settings"
                         style={{
-                            animation: this.state.hovered ? `${pushInAnim} 0.15s forwards` : ''
+                            animation: this.state.hovered ? `${pushInAnim} 0.25s forwards` : ''
                         }}
                     />
                 </div>
@@ -94,12 +107,12 @@ export default styled(Todo)`
     border-radius: 5px;
     font-size: 20px;
     padding: 10px;
-    animation: ${fadeInAnim} ${(props: ITodoProps) => {
+    animation: ${fadeInAnim} ${(props: ItodoProps) => {
         let time = 0.2 * props.index * 4;
         return time > 2 ? 2 : time;
     }}s forwards;
     transition: transform 0.1s;
-    ${(props: ITodoProps) => `
+    ${(props: ItodoProps) => `
         border: 2px solid ${props.theme.colors.ASH_GREY};
         color: ${props.theme.colors.AUROMETAL_SAURUS};
     `}
@@ -144,9 +157,10 @@ export default styled(Todo)`
         justify-items: center;
         height: 40px;
         width: 40px;
+        transition: all 0.5s;
         
         &:hover {
-            color: ${(props: ITodoProps) => props.theme.colors.CO_RED };
+            color: ${(props: ItodoProps) => props.theme.colors.RAISIN_BLACK };
             cursor: pointer;
         }
 
