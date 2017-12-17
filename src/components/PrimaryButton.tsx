@@ -7,6 +7,7 @@ interface IPrimaryButtonProps {
     theme: ITheme;
     className?: string;
     children?: any;
+    // onClick: any;
 }
 
 const PrimaryButton: React.StatelessComponent<IPrimaryButtonProps> = (props: IPrimaryButtonProps) => {

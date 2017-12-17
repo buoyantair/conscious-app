@@ -38,5 +38,20 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
+    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDPgTadF5yfaZcXNq5MaELqihpSOjfxfoE",
+        authDomain: "conscious-app-dev.firebaseapp.com",
+        databaseURL: "https://conscious-app-dev.firebaseio.com",
+        projectId: "conscious-app-dev",
+        storageBucket: "conscious-app-dev.appspot.com",
+        messagingSenderId: "537300550851"
+      };
+      
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>

@@ -6,6 +6,7 @@ interface IUserImageProps {
     theme: ITheme;
     className?: string;
     size?: number;
+    // src: any;
 }
 
 const UserImage: React.StatelessComponent<IUserImageProps> = (props: IUserImageProps) => {
@@ -23,6 +24,7 @@ export default styled(UserImage)`
         height: ${props.size}px;
         width: ${props.size}px;
         background: ${props.theme.colors.SILVER_SAND};
+        background-size: cover;
       `);  
     }}
 `;  

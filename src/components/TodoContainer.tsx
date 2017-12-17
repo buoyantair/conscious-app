@@ -2,34 +2,17 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ITheme from '../interfaces/ITheme';
-import ITodo from '../interfaces/ITodo';
-import ItoggleEditTask from '../interfaces/ItoggleEditTask';
-import IaddTask from '../interfaces/IaddTask';
-import IhandleTick from '../interfaces/IhandleTick';
-
-import TodoInput from './TodoInput';
-import TodoList from './TodoList';
 
 interface ITodoContainerProps {
     className?: string;
     theme?: ITheme;
-    todos: ITodo[];
-    handleTick: IhandleTick;
-    addTask: IaddTask;
-    toggleEditTask: ItoggleEditTask;
+    children?: any;
 }
 
 const TodoContainer: React.StatelessComponent<ITodoContainerProps> = (props: ITodoContainerProps) => {
     return (
         <div className={props.className}>
-            <TodoInput
-                addTask={props.addTask}
-            />
-            <TodoList 
-                todos={props.todos}
-                handleTick={props.handleTick}
-                toggleEditTask={props.toggleEditTask}
-            />
+            {props.children}
         </div>
     );
 };

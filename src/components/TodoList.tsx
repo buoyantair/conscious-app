@@ -2,18 +2,11 @@ import * as React from 'react';
 import styled from '../styled-components';
 
 import ITheme from '../interfaces/ITheme';
-import ITodo from '../interfaces/ITodo';
-import IhandleTask from '../interfaces/IhandleTick';
-import ItoggleEditTask from '../interfaces/ItoggleEditTask';
-
-import Todo from './Todo';
 
 interface ITodoListProps {
     className?: string;
     theme: ITheme;
-    todos: ITodo[];
-    handleTick: IhandleTask;
-    toggleEditTask: ItoggleEditTask;
+    children?: any;
 }
 
 interface ITodoListState {
@@ -32,15 +25,7 @@ class TodoList extends React.Component<ITodoListProps, ITodoListState> {
         return (
             <div className={this.props.className}>
                 {
-                    this.props.todos.map((todo, i) => (
-                        <Todo 
-                            key={i}
-                            index={i}
-                            todo={todo}
-                            handleTick={this.props.handleTick}
-                            toggleEditTask={this.props.toggleEditTask}
-                        />
-                    ))
+                    this.props.children
                 }
             </div>
         );

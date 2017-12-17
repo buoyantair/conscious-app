@@ -5,12 +5,9 @@ import ITheme from '../interfaces/ITheme';
 import ITodo from '../interfaces/ITodo';
 import IhandleTick from '../interfaces/IhandleTick';
 import ItoggleEditTask from '../interfaces/ItoggleEditTask';
-
 import TickMark from './TickMark';
 
 import fadeInAnim from './animations/fadeInAnim';
-
-import padZero from '../utils/padZero';
 
 interface ItodoProps {
     className?: string;
@@ -19,10 +16,32 @@ interface ItodoProps {
     todo: ITodo;
     handleTick: IhandleTick;
     toggleEditTask: ItoggleEditTask; 
+    toggleTimer: any;
 }
 
 interface ItodoState {
-    hovered: Boolean;
+    hovered: boolean;
+    // interval: any;
+    // secs: number;
+    // records: any;
+    // ticking: boolean;
+}
+
+function padNumber(n: any) {
+    return n < 10 ? `0${n}` : n;  
+}
+  
+function normalize(n: any) {
+    return n > 59 ? n % 60 : n;
+}
+  
+function deriveTime(secs: any) {
+    let hours = Math.floor(secs / 3600);
+    let mins = Math.floor((secs % 3600) / 60);
+  
+    return {
+      hours, mins, secs
+    };
 }
 
 const pushInAnim = keyframes`
@@ -39,30 +58,30 @@ const pushInAnim = keyframes`
     }
 `;
 
-interface ItoggleHover {
-    (): void;
+interface Itoggle {
+    (prop: any): void;
 }
 
 class Todo extends React.Component<ItodoProps, ItodoState> {
-    toggleHover: ItoggleHover = function (this: Todo) {
-        this.setState({hovered: !this.state.hovered});
-    };
+    toggle: Itoggle = (prop: any) => {
+        this.setState({[prop]: !this.state[prop]});
+    }
     
     constructor(props: ItodoProps) {
         super(props);
         this.state = {
             hovered: false,
         };
-
-        this.toggleHover = this.toggleHover.bind(this);
     }
 
     render () {
+        let { hours, mins, secs } = deriveTime(this.props.todo.timeElapsed);
+        let time = `${padNumber(normalize(hours))}:${padNumber(normalize(mins))}:${padNumber(normalize(secs))}`;
         return (
             <div 
                 className={this.props.className}
-                onMouseEnter={this.toggleHover}
-                onMouseLeave={this.toggleHover}
+                onMouseEnter={() => this.toggle('hovered')}
+                onMouseLeave={() => this.toggle('hovered')}
                 // style={{
                 //     cursor: this.state.hovered ? 'pointer' : 'initial'
                 // }}
@@ -76,12 +95,13 @@ class Todo extends React.Component<ItodoProps, ItodoState> {
                     {this.props.todo.text}
                 </div>
                 <div className="timer">
-                    <i className="control ion-play"/>
+                    <i 
+                        className={`control ${ this.props.todo.ticking ? 'ion-pause' : 'ion-play'}`}
+                        onClick={() => this.props.toggleTimer(this.props.index)}
+                    />
                     <i className="label">
                         {
-                            `
-                                ${padZero(this.props.todo.timeElapsed.hours)}:${padZero(this.props.todo.timeElapsed.mins)}:${padZero(this.props.todo.timeElapsed.secs)}
-                            `
+                            time
                         }
                     </i>
                 </div>
@@ -139,10 +159,17 @@ export default styled(Todo)`
         grid-template-columns: 120px 120px;
         align-items: center;
         width: 240px;
+        grid-gap: 10px;
         height: 40px;
         
         > .control {
             grid-column: 1;
+            text-align: right;
+            transition: : all 0.5s;
+            &:hover {
+                cursor: pointer;
+                color: ${(props: ItodoProps) => props.theme.colors.RAISIN_BLACK };
+            }
         }
 
         > .label {
