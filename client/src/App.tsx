@@ -58,14 +58,20 @@ class App extends React.Component<IAppProps, IAppState> {
     this.setState({todos});
   }
 
-  toggleEditTask: ItoggleEditTask = (todo: ITodo) => {
-    const {currentTask} = this.state;
+  toggleEditTask: ItoggleEditTask = (todo: ITodo) => new Promise((resolve: any, reject: any) => {
+    const { currentTask } = this.state;
     
-    this.setState({ currentTask : {
-      todo,
-      opened: !currentTask.opened
-    }});
-  }
+    try {
+      this.setState({ currentTask : {
+        todo,
+        opened: !currentTask.opened
+      }});
+  
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  })
 
   constructor(props: IAppProps) {
     super(props);
