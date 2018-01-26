@@ -57,8 +57,8 @@ class EditTask extends React.Component<IeditTaskProps, IeditTaskState> {
 
     Delete: IpageEvent = (e: any) => {
         e.preventDefault();
+        this.props.toggleEditTask(this.state.todo);
         this.props.deleteTask(this.state.todo);
-        this.props.toggleEditTask();
     }
 
     constructor(props: IeditTaskProps) {
